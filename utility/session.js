@@ -29,7 +29,7 @@ class GenerationSession {
         this.outputGroup
         this.prevOutputGroup
         this.isLoadingActive = false
-        this.base64OutputImages = {} //image_id/path => base64_image
+        this.base64OutputImages = {} //image_id/path => base64_image 
         this.base64initImages = {} //init_image_path => base64
         this.base64maskImage = []
         this.base64maskExpansionImage
@@ -39,7 +39,7 @@ class GenerationSession {
         this.progress_layer
         this.last_settings //the last settings been used for generation
         this.controlNetImage = [] // base64 images (one for each control net)
-        this.controlNetMask = [] // base64 images (one for each control net)
+        this.controlNetMask = [] // base64 images (one for each control net) 
         this.request_status = Enum.RequestStateEnum['Finished'] //finish or ideal state
         this.is_control_net = false
         this.control_net_selection_info
@@ -72,7 +72,7 @@ class GenerationSession {
                     [this.prevOutputGroup],
                     false
                 ) // close the folder group
-                // and reselect the current output folder for clarity
+                // and reselect the current output folder for clarity 
                 await psapi.selectLayersExe([this.outputGroup])
                 // this.prevOutputGroup.visible = is_visible
             }
@@ -111,7 +111,7 @@ class GenerationSession {
     }
     deleteProgressImageHtml() {
         try {
-            // await layer_util.deleteLayers([this.progress_layer]) // delete the old progress layer
+            // await layer_util.deleteLayers([this.progress_layer]) // delete the old progress layer 
             // document.getElementById('progressImage').style.width = '0px'
             // document.getElementById('progressImage').style.height = '0px'
 
@@ -221,7 +221,7 @@ async function getSettings(session_data) {
         let prompt_shortcut_ui_dict = {}
         try {
             let prompt_shortcut_string =
-                document.getElementById('taPromptShortcut').value
+                document.getElementById('taPromptShortcut').value 
             prompt_shortcut_ui_dict = JSON.parse(prompt_shortcut_string)
         } catch (e) {
             console.warn(
@@ -263,7 +263,7 @@ async function getSettings(session_data) {
             payload['expanded_mask'] = session_data?.mask
             if (
                 use_sharp_mask === false &&
-                payload['mask'] &&
+                payload['mask'] && 
                 mask_expansion > 0
             ) {
                 //only if mask is available and sharp_mask is off
@@ -309,7 +309,7 @@ async function getSettings(session_data) {
         function setAlwaysOnScripts() {
             const data = after_detailer_script.store.toJsFunc().data
             // console.log('setAlwaysOnScripts=> data:', data)
-            let ad_controlnet_module = null
+            let ad_controlnet_module = 'None'
             if (data.controlnet_model?.includes('inpaint')) {
                 ad_controlnet_module = 'inpaint_global_harmonious'
             }
@@ -320,14 +320,14 @@ async function getSettings(session_data) {
                         {
                             ad_model: data.ad_model,
                             ad_prompt: data.prompt,
-                            ad_negative_prompt: data.negativePrompt,
+                            ad_negative_prompt: data.negativePrompt, 
                             ad_confidence: data.ad_conf,
                             ad_mask_min_ratio: 0.0,
                             ad_mask_max_ratio: 1.0,
                             ad_dilate_erode: 32,
                             ad_x_offset: 0,
                             ad_y_offset: 0,
-                            ad_mask_merge_invert: 'None',
+                            ad_mask_merge_invert: 'None', 
                             ad_mask_blur: 4,
                             ad_denoising_strength: 0.4,
                             ad_inpaint_only_masked: true,
